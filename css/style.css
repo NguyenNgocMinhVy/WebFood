@@ -1,0 +1,1139 @@
+/* ========================================================= */
+/* === 1. Cài đặt chung, Biến và Font chữ === */
+/* ========================================================= */
+/* Nhập các font chữ Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Định nghĩa các biến CSS để quản lý màu sắc, font chữ và hiệu ứng */
+:root {
+  --primary-color: #dc3023; /* Đỏ chủ đạo */
+  --secondary-color: #f39c12; /* Màu cam/vàng nhấn (đã thống nhất) */
+  --text-dark: #333; /* Màu chữ chính cho nền sáng */
+  --text-light: #fff; /* Màu chữ sáng */
+  --bg-dark: rgba(0, 0, 0, 0.5); /* Lớp phủ nền tối */
+  --glass-bg: rgba(255, 255, 255, 0.1); /* Nền kính mờ */
+  --glass-border: rgba(255, 255, 255, 0.3); /* Viền kính */
+  --box-shadow-dark: 0 10px 40px 0 rgba(0, 0, 0, 0.4);
+  --box-shadow-light: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --bg-light: #f5f6fa;
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+}
+
+/* Reset cơ bản và cài đặt chung */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  line-height: 1.6;
+  position: relative;
+}
+
+/* Link mặc định */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ========================================================= */
+/* === 2. Nền Video và Lớp phủ toàn màn hình === */
+/* ========================================================= */
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+}
+
+/* Lớp phủ nền tối */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-dark);
+  backdrop-filter: blur(10px);
+  z-index: -1;
+}
+
+/* Wrapper nội dung chính */
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+/* ========================================================= */
+/* === 3. Header và Navigation === */
+/* ========================================================= */
+.main-header {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-light);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.main-header .logo {
+  height: 90px;
+}
+
+.main-header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.main-header nav a {
+  font-weight: 500;
+  transition: color 0.3s ease;
+  color: var(--text-light);
+}
+
+.main-header nav a:hover {
+  color: var(--secondary-color);
+}
+
+/* ========================================================= */
+/* === 4. Chào mừng và Tìm kiếm === */
+/* ========================================================= */
+.welcome-section {
+  text-align: center;
+  color: var(--text-light);
+  margin-top: 50px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.welcome-section h2 {
+  font-family: var(--font-heading);
+  font-size: 2.5em;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.welcome-section p {
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+.animated-title {
+  animation: bounce 5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Thanh tìm kiếm */
+.menu-tabs {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 40px auto;
+  max-width: 1200px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.search-bar {
+  width: 100%;
+  position: relative;
+  margin: 0 auto 30px;
+  max-width: 500px;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 12px 20px 12px 50px;
+  font-size: 16px;
+  border: 2px solid transparent;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  transition: border-color 0.3s ease;
+  color: var(--text-dark);
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.search-bar::before {
+  content: "🔍";
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+/* Tabs */
+.tabs {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.tab-button {
+  padding: 12px 30px;
+  margin: 0 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: var(--text-light);
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.tab-button.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================================= */
+/* === 5. Các Khung Nội Dung (Form) === */
+/* ========================================================= */
+.form-container {
+  background: var(--glass-bg);
+  border-radius: 20px;
+  padding: 40px;
+  width: 90%;
+  max-width: 600px;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--box-shadow-dark);
+  text-align: center;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 1s ease-in-out;
+  margin: 0 auto 50px;
+}
+
+h1, h2 {
+  font-family: var(--font-heading);
+  font-size: 2.8em;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--text-light);
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+input[type="text"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1.1em;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: vertical;
+}
+
+.form-container label {
+  color: var(--text-light);
+  display: block;
+  text-align: left;
+  margin-top: 15px;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #ccc;
+  font-weight: 300;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Nút bấm */
+button {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 12px;
+  background: var(--primary-color);
+  color: var(--text-light);
+  font-size: 1.2em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  box-shadow: 0 4px 20px rgba(220, 48, 35, 0.5);
+  margin-top: 30px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+  background: #b72a1b;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(220, 48, 35, 0.8);
+}
+
+/* Link đăng ký */
+.signup-link {
+  margin-top: 25px;
+  font-size: 1em;
+  color: var(--text-light);
+}
+
+.signup-link a {
+  color: var(--secondary-color);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* ========================================================= */
+/* === 6. Trang Chi Tiết Sản Phẩm === */
+/* ========================================================= */
+.product-detail {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 30px;
+  background: var(--glass-bg);
+  border-radius: 20px;
+  box-shadow: var(--box-shadow-dark);
+  backdrop-filter: blur(10px);
+  color: var(--text-light);
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.detail-img {
+  flex: 1 1 300px;
+  max-width: 400px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--box-shadow-light);
+}
+
+.detail-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+}
+
+.detail-info {
+  flex: 2 1 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.detail-info h1 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 2.8em;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.detail-info p {
+  font-size: 1.2em;
+  line-height: 1.4;
+  color: var(--text-light);
+}
+
+/* Mô tả chi tiết và toggle */
+.product-description {
+  font-size: 1.1em;
+  color: var(--text-light);
+  margin-top: 15px;
+}
+
+.toggle-description {
+  color: var(--secondary-color);
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* Nếu có JS thì toggle description-text */
+.description-text {
+  margin-top: 10px;
+  line-height: 1.5;
+  color: var(--text-light);
+}
+
+/* ========================================================= */
+/* === 7. Footer === */
+/* ========================================================= */
+.footer {
+  text-align: center;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding: 20px;
+            margin-top: auto;
+}
+
+/* ========================================================= */
+/* === 8. Responsive === */
+/* ========================================================= */
+@media (max-width: 768px) {
+  .main-header {
+    flex-direction: column;
+    padding: 15px 20px;
+    text-align: center;
+  }
+
+  .main-header nav ul {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .welcome-section h2 {
+    font-size: 2em;
+  }
+
+  .menu-tabs {
+    padding: 20px;
+  }
+
+  .product-detail {
+    flex-direction: column;
+    max-width: 95%;
+    padding: 20px;
+  }
+
+  .detail-img {
+    max-width: 100%;
+  }
+
+  .detail-info {
+    max-width: 100%;
+  }
+}
+
+/* ========================================================= */
+/* === 9. Hiệu ứng fadeIn cho form === */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+.product-detail {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    gap: 30px;
+}
+
+.detail-img {
+    flex: 1 1 300px;
+    max-width: 400px;
+    border-radius: 15px;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+}
+
+.detail-info {
+    flex: 1 1 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.detail-info h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #dc3023;
+    font-weight: 600;
+}
+
+.detail-info p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.detail-info label {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+#quantity {
+    width: 80px;
+    padding: 8px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.detail-info button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #dc3023;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.detail-info button:hover {
+    background-color: #b71c1c;
+}
+
+/* Toggle description */
+.product-description {
+    margin-top: 20px;
+}
+
+.toggle-description {
+    background-color: #f39c12;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.toggle-description:hover {
+    background-color: #d68910;
+}
+
+.description-text {
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #000000;
+    line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .product-detail {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .detail-img,
+    .detail-info {
+        max-width: 100%;
+    }
+
+    #quantity {
+        width: 100%;
+    }
+
+    .detail-info button,
+    .toggle-description {
+        width: 100%;
+    }
+}
+.quantity-label {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: #444; /* Hoặc var(--text-dark) */
+  display: block;
+}
+/*cart*/
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    /* Wrapper căn giữa main-container */
+  
+
+    /* ========================================================= */
+    /* === 2. Nền Video và Lớp phủ toàn màn hình === */
+    /* ========================================================= */
+    .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+    
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-dark);
+      backdrop-filter: blur(15px);
+      z-index: -1;
+    }
+
+    /* ========================================================= */
+    /* === 3. Các Khung Nội Dung (Form và Header) === */
+    /* ========================================================= */
+    .main-container {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 40px 20px;
+      width: 90%;
+      max-width: 900px; /* Tăng chiều rộng tối đa cho giỏ hàng */
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--box-shadow-dark);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1s ease-in-out;
+      text-align: center;
+  
+    }
+    .main-header {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px 0;
+      text-align: center;
+      position: sticky; /* Giữ header ở trên cùng */
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(5px);
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-size: 2.5em;
+      font-weight: 700;
+      color: var(--secondary-color);
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+      margin: 0;
+    }
+
+    /* ========================================================= */
+    /* === 4. Bảng Giỏ Hàng === */
+    /* ========================================================= */
+    #cart-table {
+      width: 100%;
+      border-collapse: separate; /* Thay đổi để bo góc */
+      border-spacing: 0 10px; /* Khoảng cách giữa các hàng */
+      margin-top: 20px;
+    }
+
+    #cart-table thead th {
+      background: var(--primary-color);
+      color: #fff;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      padding: 15px;
+      text-align: left;
+      font-size: 1em;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    #cart-table tbody tr {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    #cart-table tbody tr:hover {
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #cart-table th:first-child,
+    #cart-table td:first-child {
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      padding-left: 20px;
+    }
+
+    #cart-table th:last-child,
+    #cart-table td:last-child {
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      padding-right: 20px;
+    }
+
+    #cart-table td {
+      padding: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 0.95em;
+    }
+
+    #cart-table td:last-child {
+      text-align: center;
+    }
+
+    /* ========================================================= */
+    /* === 5. Các thành phần khác === */
+    /* ========================================================= */
+    /* Input số lượng */
+    #cart-table input[type="number"] {
+      width: 60px;
+      padding: 8px 10px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1em;
+      text-align: center;
+    }
+
+    /* Nút xóa sản phẩm */
+    #cart-table button {
+      background: none;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: var(--secondary-color);
+      transition: color 0.3s ease;
+    }
+
+    #cart-table button:hover {
+      color: var(--primary-color);
+    }
+    
+    /* Tóm tắt giỏ hàng */
+    .cart-summary {
+      margin-top: 30px;
+      text-align: right;
+    }
+
+    .cart-summary h3 {
+      font-family: var(--font-heading);
+      font-size: 1.8em;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    
+    /* Nút thanh toán */
+    .cart-summary button {
+      width: 250px;
+      padding: 18px;
+      border: none;
+      border-radius: 12px;
+      background: var(--primary-color);
+      color: var(--secondary-color);
+      font-size: 1.2em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      box-shadow: 0 4px 20px rgba(220, 48, 35, 0.5);
+    }
+    
+    .cart-summary button:hover {
+      background: #b72a1b;
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(220, 48, 35, 0.8);
+    }
+
+    /* ========================================================= */
+    /* === 6. Hiệu ứng và Responsive === */
+    /* ========================================================= */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .main-container {
+        padding: 25px;
+      }
+      h1 {
+        font-size: 2em;
+      }
+      #cart-table {
+        font-size: 0.9em;
+      }
+      #cart-table th, #cart-table td {
+        padding: 12px;
+      }
+      .cart-summary h3 {
+        font-size: 1.5em;
+      }
+      .cart-summary button {
+        width: 100%;
+      }
+    }
+  /* ========================================================= */
+/* === 7. Giỏ Hàng (Cart Page) === */
+/* ========================================================= */
+.main-container {
+  background: var(--glass-bg);
+  border-radius: 20px;
+  padding: 40px;
+  margin: 40px auto;
+  width: 90%;
+  max-width: 1000px;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--box-shadow-dark);
+  backdrop-filter: blur(12px);
+  animation: fadeIn 1s ease-in-out;
+  text-align: center;
+}
+
+/* ===== TABLE ===== */
+#cart-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+  margin-top: 30px;
+  font-size: 1em;
+  color: #fff;
+}
+
+#cart-table thead th {
+  background: var(--primary-color);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  padding: 16px;
+  text-align: center;
+  font-size: 1em;
+  text-transform: uppercase;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* ===== TABLE BODY ===== */
+#cart-table tbody tr {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#cart-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.01);
+}
+
+#cart-table th:first-child,
+#cart-table td:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding-left: 20px;
+}
+
+#cart-table th:last-child,
+#cart-table td:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-right: 20px;
+}
+
+#cart-table td {
+  padding: 16px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1em;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ===== INPUT NUMBER ===== */
+#cart-table input[type="number"] {
+  width: 70px;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1em;
+  text-align: center;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+#cart-table input[type="number"]:focus {
+  border-color: var(--primary-color);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ===== DELETE BUTTON ===== */
+#cart-table button {
+  background: none;
+  border: none;
+  font-size: 1.3em;
+  cursor: pointer;
+  color: #ff6666;
+  transition: 0.3s ease;
+}
+
+#cart-table button:hover {
+  color: #ff1a1a;
+  transform: scale(1.2);
+}
+
+/* ===== CART SUMMARY ===== */
+.cart-summary {
+  margin-top: 40px;
+  text-align: right;
+}
+
+.cart-summary h3 {
+  font-family: var(--font-heading);
+  font-size: 2em;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #fff;
+}
+
+.cart-summary button {
+  width: 260px;
+  padding: 18px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ff4e50, #f9d423);
+  color: #000;
+  font-size: 1.2em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 25px rgba(255, 78, 80, 0.5);
+}
+
+.cart-summary button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255, 78, 80, 0.8);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 25px;
+  }
+
+  #cart-table {
+    font-size: 0.9em;
+  }
+
+  #cart-table th,
+  #cart-table td {
+    padding: 12px;
+  }
+
+  .cart-summary h3 {
+    font-size: 1.5em;
+    text-align: center;
+  }
+
+  .cart-summary button {
+    width: 100%;
+  }
+}
+
+/* ========================================================= */
+/* === 8. Product*/
+/* ========================================================= */
+
+  :root {
+  --primary-color: #dc3023;
+  --secondary-color: #f5f5f5;
+  --bg-dark: rgba(0, 0, 0, 0.5);
+  --glass-bg: rgb(0, 0, 0);
+  --glass-border: rgb(12, 6, 6);
+  --box-shadow-dark: 0 8px 30px rgba(0, 0, 0, 0.6);
+  --font-body: 'Poppins', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
+  --bg-light: #111;
+  --text-dark: var(--secondary-color);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.product-detail {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: auto;
+  background: var(--glass-bg);
+  border-radius: 20px;
+  box-shadow: var(--box-shadow-dark);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(15px);
+  animation: fadeIn 1s ease;
+}
+
+.detail-img {
+  max-width: 450px;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+}
+
+.detail-info {
+  max-width: 600px;
+  flex: 1;
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: var(--secondary-color);
+}
+
+#product-price {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: var(--primary-color);
+}
+
+.quantity-label {
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+input[type="number"] {
+  width: 80px;
+  padding: 12px;
+  margin: 10px 0 20px;
+  font-size: 1em;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border);
+  background: rgb(249, 249, 249);
+  color: rgb(7, 6, 6);
+  text-align: center;
+}
+
+button {
+  background: var(--primary-color);
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(220, 48, 35, 0.5);
+}
+
+button:hover {
+  background: #b72a1b;
+  transform: translateY(-3px);
+}
+
+.product-description {
+  margin-top: 30px;
+  font-size: 1em;
+  line-height: 1.7;
+}
+
+.description-text {
+  opacity: 0.9;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .product-detail {
+    flex-direction: column;
+    padding: 30px 15px;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  #product-price {
+    font-size: 1.3em;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+#product-option {
+  background-color: #fffdfd;
+  color: #111;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  max-width: 250px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+#product-option:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px var(--primary-color);
+}

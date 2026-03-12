@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Đăng Nhập</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <video autoplay muted loop playsinline class="background-video">
+        <source src="vd/5906565-hd_1920_1080_25fps.mp4" type="video/mp4" />
+        Trình duyệt của bạn không hỗ trợ video nền.
+    </video>
+
+    <div class="login-container" role="main" aria-label="Form đăng nhập người dùng">
+        <h2>Đăng nhập</h2>
+        <form onsubmit="return loginUser(event)">
+            <div class="input-group">
+                <input type="text" id="login-username" placeholder="Tên đăng nhập" required autocomplete="username" />
+            </div>
+            <div class="input-group">
+                <input type="password" id="login-password" placeholder="Mật khẩu" required autocomplete="current-password" />
+            </div>
+            <div class="forgot-password">
+                <a href="#" id="forgotPasswordLink" tabindex="0">Quên mật khẩu?</a>
+            </div>
+            <button type="submit" class="login-btn">Đăng nhập</button>
+            <p class="signup-link">
+                Chưa có tài khoản? <a href="signup.html">Đăng ký</a>
+            </p>
+        </form>
+    </div>
+
+    <script>
+      function loginUser(event) {
+    event.preventDefault();
+    const username = document.getElementById("login-username").value.trim();
+    const password = document.getElementById("login-password").value;
+
+    const savedUser = localStorage.getItem("user");
+
+    if (savedUser) {
+        const userObj = JSON.parse(savedUser);
+        if (userObj.username === username && userObj.password === password) {
+            // Lưu trạng thái đăng nhập
+            localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("loggedInUser", JSON.stringify({ username: username }));
+
+            alert("Đăng nhập thành công!");
+            window.location.href = "index.html";
+        } else {
+            alert("Sai tên đăng nhập hoặc mật khẩu!");
+        }
+    } else {
+        alert("Không tìm thấy tài khoản. Vui lòng đăng ký.");
+    }
+}
+
+
+        // Xử lý Quên mật khẩu
+        const forgotLink = document.getElementById("forgotPasswordLink");
+        forgotLink.addEventListener("click", function(e) {
+            e.preventDefault();
+            const email = prompt("Vui lòng nhập email của bạn để đặt lại mật khẩu:");
+
+            if (email) {
+                // Kiểm tra email hợp lệ đơn giản
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email.trim())) {
+                    alert("Email không hợp lệ. Vui lòng thử lại.");
+                    return;
+                }
+
+                // Giả lập gửi email khôi phục mật khẩu
+                alert("Nếu email tồn tại trong hệ thống, bạn sẽ nhận được hướng dẫn đặt lại mật khẩu qua email.");
+            }
+        });
+    </script>
+    <script src="js/login.js"></script>
+</body>
+</html>

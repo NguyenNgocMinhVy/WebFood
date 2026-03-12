@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thanh Toán Chuyên Nghiệp</title>
+  
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/thanhtoans.css">
+ 
+    
+</head>
+<body>
+    <form id="checkout-form" class="form-container" novalidate>
+        <h1>🧾 Thông tin thanh toán</h1>
+        
+        <label for="name">Họ và tên:</label>
+        <input type="text" id="name" name="name" placeholder="Nguyễn Văn A" required />
+        
+        <label for="phone">Số điện thoại:</label>
+        <input type="tel" id="phone" name="phone" placeholder="0912 345 678" pattern="[0-9]{9,11}" required />
+        
+        <label for="address">Địa chỉ giao hàng:</label>
+        <textarea id="address" name="address" placeholder="Số nhà, đường, phường/xã, quận/huyện, thành phố" rows="4" required></textarea>
+        
+        <label for="payment">Phương thức thanh toán:</label>
+        <select id="payment" name="payment" required>
+            <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+            <option value="bank">Chuyển khoản ngân hàng</option>
+        </select>
+        
+        <div id="qr-section" aria-live="polite" aria-hidden="true">
+            <p>Vui lòng quét mã QR để chuyển khoản:</p>
+            <img id="qr-img" src="" alt="Mã QR chuyển khoản BIDV" />
+            <p><strong>Ngân hàng:</strong> BIDV</p>
+            <p><strong>Số tài khoản:</strong> 8813250405</p>
+            <p><strong>Chủ tài khoản:</strong> Nguyễn Ngọc Cát Tường</p>
+        </div>
+        
+        <button type="submit" aria-label="Xác nhận thanh toán">
+            Xác nhận thanh toán
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+    </form>
+    
+    <script>
+        const paymentSelect = document.getElementById("payment");
+        const qrSection = document.getElementById("qr-section");
+        const qrImg = document.getElementById("qr-img");
+
+      
+        function getTotalAmount() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let total = 0;
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+            });
+            return total;
+        }
+        
+      
+        paymentSelect.addEventListener("change", () => {
+            if (paymentSelect.value === "bank") {
+                const amount = getTotalAmount();
+                const bank = "BIDV";
+                const account = "8813250405";
+                const name = "Nguyen Ngoc Cat Tuong";
+                const addInfo = "Thanh toan don hang";
+              
+                const qrURL = `https://img.vietqr.io/image/${bank}-${account}-compact.png?amount=${amount > 0 ? amount : 0}&addInfo=${encodeURIComponent(addInfo)}&accountName=${encodeURIComponent(name)}`;
+                
+                qrImg.src = qrURL;
+
+                qrSection.style.display = "block";
+                qrSection.setAttribute("aria-hidden", "false");
+            } else {
+                qrSection.style.display = "none";
+                qrSection.setAttribute("aria-hidden", "true");
+                qrImg.src = "";
+            }
+        });
+
+    
+        window.addEventListener("load", () => {
+            if (paymentSelect.value === "bank") {
+                paymentSelect.dispatchEvent(new Event('change'));
+            }
+        });
+        
+        document.getElementById("checkout-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            if (!this.checkValidity()) {
+                this.reportValidity();
+                return;
+            }
+            
+            const name = document.getElementById("name").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const address = document.getElementById("address").value.trim();
+            const payment = paymentSelect.value;
+            
+       
+            alert(`Cảm ơn ${name}!\nPhương thức thanh toán: ${payment === "cod" ? "COD" : "Chuyển khoản ngân hàng"}\nSố điện thoại: ${phone}\nĐịa chỉ: ${address}`);
+            
+        
+            localStorage.removeItem("cart");
+            
+     
+            this.reset();
+            qrSection.style.display = "none";
+            qrImg.src = "";
+         window.location.href = "thankcod.html";
+        });
+
+    </script>
+    <script src="js/layout.js"></script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+ :root {
+            --primary-color: #dc3023; /* Màu đỏ chủ đạo */
+            --secondary-color: #f39c12; /* Màu cam/vàng nhấn */
+            --text-dark: #333;
+            --text-light: #fff;
+            --bg-dark: #2c3e50;
+            --bg-light: #f5f6fa;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ================================== */
+        /* === 2. Video nền và Lớp phủ === */
+        /* ================================== */
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100vw;
+            min-height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        /* Lớp phủ màu đen mờ trên video */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: -1;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            flex: 1; /* Đẩy footer xuống cuối trang */
+        }
+
+        /* ================================== */
+        /* === 3. Header và Navigation === */
+        /* ================================== */
+        .main-header {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-light);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .main-header .logo {
+            height: 90px; /* Điều chỉnh kích thước logo */
+        }
+
+        .main-header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .main-header nav a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+            color: var(--text-light);
+        }
+
+        .main-header nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* ================================== */
+        /* === 4. Chào mừng và Tìm kiếm === */
+        /* ================================== */
+        .welcome-section {
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 50px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .welcome-section h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .welcome-section p {
+            font-size: 1.2em;
+            font-style: italic;
+        }
+
+        .animated-title {
+            animation: bounce 5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .menu-tabs {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 1200px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* === Thanh tìm kiếm === */
+        .search-bar {
+            width: 100%;
+            position: relative;
+            margin: 0 auto 30px;
+            max-width: 500px;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 12px 20px 12px 50px;
+            font-size: 16px;
+            border: 2px solid transparent;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            transition: border-color 0.3s ease;
+            color: var(--text-dark);
+        }
+
+        #searchInput:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .search-bar::before {
+            content: "🔍";
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        /* === Tabs === */
+        .tabs {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tab-button {
+            padding: 12px 30px;
+            margin: 0 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: var(--text-light);
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .tab-button.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ================================== */
+        /* === 5. Sản phẩm và Menu === */
+        /* ================================== */
+        .tab-content {
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            padding: 10px;
+        }
+
+        .tab-content.active {
+            display: grid;
+        }
+
+        .product {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .product h3 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .product .price {
+            font-size: 1em;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .product a {
+            display: inline-block;
+            padding: 8px 15px;
+            background: var(--primary-color);
+            color: var(--text-light);
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .product a:hover {
+            background-color: #b71c1c;
+        }
+
+        /* ================================== */
+        /* === 6. Chân trang (Footer) === */
+        /* ================================== */
+        footer {
+            text-align: center;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        /* ================================== */
+        /* === 7. Responsive cho Mobile === */
+        /* ================================== */
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 20px;
+            }
+            .main-header .logo {
+                margin-bottom: 15px;
+            }
+            .main-header nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            .welcome-section h2 {
+                font-size: 1.8em;
+            }
+            .welcome-section p {
+                font-size: 1em;
+            }
+            .menu-tabs {
+                margin: 20px;
+            }
+            .tab-button {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+.new-launch-section {
+     background: linear-gradient(to right, #000, #1a0000); 
+    color: #fff;
+    padding: 60px 20px; text-align: center;
+     background-image: url('picture/burger.jpg');
+     background-size: cover;
+    background-position: center; 
+    position: relative; margin: 40px 0; } 
+    .new-launch-section::before {
+         content: "";
+          position: absolute; inset: 0; 
+          background: rgba(0, 0, 0, 0.75);
+           z-index: 0; } 
+    .new-launch-section .content { 
+        position: relative;
+      z-index: 1;
+       max-width: 700px; 
+      margin: auto; 
+    } 
+    .new-launch-section h2 { 
+        font-size: 2em; 
+        margin-bottom: 20px;
+         color: #FFCE00;
+         min-height: 50px; }
+     .new-launch-section p { 
+        font-size: 1.1em;
+         margin-bottom: 25px;
+     }
+      #countdown-new
+         
+         { font-size: 1.5em; 
+            font-weight: bold;
+             display: flex;
+              justify-content: center;
+              gap: 15px; flex-wrap: wrap;
+               margin-bottom: 35px;
+            } 
+    #countdown-new span {
+       background: rgba(255, 255, 255, 0.1);
+       padding: 10px 16px;
+      border-radius: 8px;
+       backdrop-filter: blur(6px);
+       border: 1px solid rgba(255, 255, 255, 0.2); 
+            }   
+            .btn-launch {
+                 display: inline-block;
+                  background-color: #dc3023;
+                  padding: 14px 36px; color: #fff;
+                   border-radius: 8px; 
+                   font-size: 1.1em;
+                    font-weight: 600;
+                     text-decoration: none;
+                      transition: 0.3s ease;
+                       box-shadow: 0 6px 18px rgba(220, 48, 35, 0.6);
+  } .btn-launch:hover
+      { background-color: #b72a1b;
+       transform: scale(1.05);
+          } 
+.cursor { 
+    display: inline-block;
+     color: #FFCE00;
+      animation: blink 0.8s infinite;
+     }
+ @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }

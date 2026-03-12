@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ - Ăn Vặt Minh Phát</title>
+    <meta name="description" content="Trang Chủ - Ăn Vặt Minh Phát">
+    <meta name="keywords" content="Ăn Vặt">
+    <meta name="author" content="Minh Vy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <video autoplay muted loop playsinline class="background-video">
+        <source src="vd/6873692838406.mp4" type="video/mp4">
+        Trình duyệt của bạn không hỗ trợ video nền.
+    </video>
+
+    <main class="content-wrapper">
+        <header class="main-header">
+            <a href="index.html">
+                <img src="picture/tải xuống.png"Logo Ăn Vặt Minh Phát" class="logo">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="cart.html">Giỏ Hàng</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                    <li><a id="auth-link" href="login.html">Đăng nhập</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="welcome-section">
+            <h2 class="animated-title">Chào mừng bạn đến với gian hàng của Ăn Vặt Minh Phát!</h2>
+            <p>Hãy chọn món ăn yêu thích và đặt hàng ngay!</p>
+        </section>
+
+        <!-- Ra Mắt Món Mới -->
+<section class="new-launch-section">
+  <div class="content" style="display: flex; align-items: center; justify-content: center; gap: 30px; flex-wrap: wrap; color: white;">
+    <div class="text-info" style="max-width: 500px;">
+      <h2 style="color: #ffcc00; font-weight: 700; font-size: 2.4rem; margin-bottom: 0.5rem;">
+        <span id="typewriter-new">Sắp ra món mới!</span>
+      </h2>
+      <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+        Siêu phẩm <strong>"Hotdog Tam Giác Phô Mai kéo Sợi"</strong> chính thức ra mắt trong:
+      </p>
+      <div id="countdown-new" style="display: flex; gap: 15px; font-weight: 600; font-size: 1.2rem;">
+        <!-- Countdown sẽ hiển thị ở đây -->
+      </div>
+      <a href="disc.html" class="btn-launch" style="margin-top: 20px; padding: 12px 24px; background-color: #e63946; color: white; text-decoration: none; border-radius: 6px; display: inline-block;">
+        Đặt trước ngay
+      </a>
+    </div>
+
+    <div class="image-launch" style="max-width: 300px; flex-shrink: 0; position: relative;">
+      <!-- Nút điều khiển -->
+      <button id="prevBtn" style="position: absolute; top: 50%; left: 0; transform: translateY(-50%); background: rgba(0,0,0,0.5); border:none; color: white; font-size: 24px; cursor: pointer; padding: 5px 10px; border-radius: 4px;">&#10094;</button>
+
+      <img id="slideImage" src="picture/277ebb3c-2642-4a0c-be7b-4eff789f0355.png" alt="Burger Phô Mai Lava" style="width: 100%; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.6);" />
+
+      <button id="nextBtn" style="position: absolute; top: 50%; right: 0; transform: translateY(-50%); background: rgba(0,0,0,0.5); border:none; color: white; font-size: 24px; cursor: pointer; padding: 5px 10px; border-radius: 4px;">&#10095;</button>
+    </div>
+  </div>
+</section>
+<script src="js/newfood.js"></script>
+
+        <section class="menu-tabs">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Tìm món ăn...">
+            </div>
+
+            <div class="tabs">
+                <button class="tab-button active" onclick="showTab(event, 'food')">🍽️ Thức ăn</button>
+                <button class="tab-button" onclick="showTab(event, 'drink')">🥤 Nước uống</button>
+            </div>
+
+           <div id="food" class="tab-content active">
+                <div class="product"><img src="picture/burger.jpg" alt="Burger Bò"><h3>Burger Bò</h3><p class="price">Giá: 45.000đ</p><a href="product.html?product=burger">Xem chi tiết</a></div>
+                <div class="product"><img src="picture/chicken.png" alt="Gà Rán Giòn"><h3>Gà Rán Giòn</h3><p class="price">Giá: 38.000đ</p><a href="product.html?product=chicken">Xem chi tiết</a></div>
+                <div class="product"><img src="picture/khoaitay.png" alt="Khoai Tây Chiên"><h3>Khoai Tây Chiên</h3><p class="price">Giá: 22.000đ</p><a href="product.html?product=khoaitay">Xem chi tiết</a></div>
+                <div class="product"><img src="picture/xx.png" alt="Xúc Xích Chiên"><h3>Xúc Xích Chiên</h3><p class="price">Giá: 12.000đ</p><a href="product.html?product=xucxich">Xem chi tiết</a></div>
+                <div class="product"><img src="picture/nugget.png" alt="Gà Nugget"><h3>Gà Nugget</h3><p class="price">Giá: 35.000đ</p><a href="product.html?product=nugget">Xem chi tiết</a></div>
+                <div class="product"><img src="picture/banhgao.png" alt="Bánh Gạo Cay Tokbokki"><h3>Bánh Gạo Cay Tokbokki</h3><p class="price">Giá: 40.000đ</p><a href="product.html?product=tokbokki">Xem chi tiết</a></div>
+                <div class="product"><img src="picture/nemchua.png" alt="Nem Chua Rán"><h3>Nem Chua Rán</h3><p class="price">Giá: 25.000đ</p><a href="product.html?product=nemchua">Xem chi tiết</a></div>
+                <div class="product"><img src="picture/cavien.png" alt="Cá Viên Chiên"><h3>Cá Viên Chiên</h3><p class="price">Giá: 30.000đ</p><a href="product.html?product=cavien">Xem chi tiết</a></div>
+            </div>
+
+            <div id="drink" class="tab-content">
+                <div class="product"><img src="picture/trasua.png" alt="Trà Sữa Trân Châu"><h3>Trà Sữa Trân Châu</h3><p class="price">Giá: 30.000đ</p><a href="product.html?product=trasua">Xem chi tiết</a></div>
+                <div class="product"><img src="picture/tradao.png" alt="Trà Đào"><h3>Trà Đào</h3><p class="price">Giá: 25.000đ</p><a href="product.html?product=tradao">Xem chi tiết</a></div>
+                <div class="product"><img src="picture/suachua.png" alt="Sữa Chua Dẻo"><h3>Sữa Chua Dẻo</h3><p class="price">Giá: 18.000đ</p><a href="product.html?product=suachua">Xem chi tiết</a></div>
+                <div class="product"><img src="picture/milo.png" alt="Milo Dầm"><h3>Milo Dầm</h3><p class="price">Giá: 20.000đ</p><a href="product.html?product=milo">Xem chi tiết</a></div>
+                <div class="product"><img src="picture/daxaydao.png" alt="Đá Xay Đào"><h3>Đá Xay Đào</h3><p class="price">Giá: 25.000đ</p><a href="product.html?product=daxaydao">Xem chi tiết</a></div>
+                <div class="product"><img src="picture/dabao.png" alt="Đá Bào"><h3>Đá Bào</h3><p class="price">Giá: 10.000đ</p><a href="product.html?product=dabao">Xem chi tiết</a></div>
+                <div class="product"><img src="picture/matcha.png" alt="MatCha Latte"><h3>MatCha Latte</h3><p class="price">Giá: 35.000đ</p><a href="product.html?product=matcha">Xem chi tiết</a></div>
+                <div class="product"><img src="picture/nuocngot.png" alt="Các Loại Nước Ngọt"><h3>Các Loại Nước Ngọt</h3><p class="price">Giá: 12.000đ</p><a href="product.html?product=nuocngot">Xem chi tiết</a></div>
+            </div>
+        </section>
+
+        <footer>
+            <p>📞 Hotline: 0855 77 3933 | 📍 Giao hàng nội thành-TPHCM</p>
+            <p>Hãy đặt hàng ngay khi các bé có chiếc bụng đói nhé!</p>
+        </footer>
+    </main>
+  <script src="js/index.js"></script>
+  
+</body>
+</html>
