@@ -1,5 +1,7 @@
 # WebFood 
 
+Live Demo: https://nguyenngocminhvy.github.io/WebFood/
+
 ## Project Description
 
 WebFood is a simple food ordering website built with **HTML, CSS, and JavaScript**.
@@ -21,6 +23,9 @@ This project was created as a first-year university assignment to practice **fro
 * CSS
 * JavaScript
 
+##Use Case Diagram
+
+![Use Case Diagram](https://github.com/NguyenNgocMinhVy/WebFood/raw/main/usecase.png)
 
 ## Project Structure
 
