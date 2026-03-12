@@ -1,0 +1,17 @@
+# User Stories – WebFood
+
+## Customer
+
+As a customer, I want to browse the food menu so I can see what dishes are available.
+
+As a customer, I want to see the details of a food item so I know its price and description.
+
+As a customer, I want to add food items to my cart so I can order them later.
+
+As a customer, I want to log in to my account so I can manage my orders.
+
+As a customer, I want to contact the website so I can ask questions or send feedback.
+
+## Admin
+
+As an admin, I want to manage food products so I can update the menu when needed.
